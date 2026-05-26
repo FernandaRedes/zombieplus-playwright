@@ -1,0 +1,82 @@
+{
+  "create": {
+    "title": "Guerra Mundial Z",
+    "overview": "Um ex-investigador da ONU viaja pelo mundo para descobrir a origem de uma pandemia zumbi que ameaça destruir a humanidade.",
+    "company": "Paramount Pictures",
+    "release_year": 2013,
+    "featured": false,
+    "cover": "/images/world-war-z.png"
+  },
+  "exterminio": {
+    "title": "Extermínio",
+    "overview": "Após um vírus altamente contagioso escapar de um laboratório, a população da Inglaterra é devastada por pessoas infectadas extremamente violentas.",
+    "company": "Fox Searchlight Pictures",
+    "release_year": 2002,
+    "featured": false,
+    "cover": "/images/28-days-later.png"
+  },
+  "madrugada_dos_mortos": {
+    "title": "Madrugada dos Mortos",
+    "overview": "Sobreviventes de um apocalipse zumbi se refugiam em um shopping center tentando escapar das hordas de mortos-vivos.",
+    "company": "Universal Pictures",
+    "release_year": 2004,
+    "featured": false,
+    "cover": "/images/dawn-of-the-dead.png"
+  },
+  "zumbilandia": {
+    "title": "Zumbilândia",
+    "overview": "Quatro sobreviventes improváveis atravessam os Estados Unidos tentando sobreviver ao caos causado por zumbis.",
+    "company": "Columbia Pictures",
+    "release_year": 2009,
+    "featured": false,
+    "cover": "/images/zombieland.png"
+  },
+  "invasao_zumbi": {
+    "title": "Invasão Zumbi",
+    "overview": "Durante uma viagem de trem na Coreia do Sul, passageiros enfrentam um rápido surto zumbi que toma conta do país.",
+    "company": "Next Entertainment World",
+    "release_year": 2016,
+    "featured": false,
+    "cover": "/images/train-to-busan.png"
+  },
+  "todo_mundo_quase_morto": {
+    "title": "Todo Mundo Quase Morto",
+    "overview": "Um homem comum tenta salvar amigos e familiares durante um apocalipse zumbi em Londres.",
+    "company": "Universal Pictures",
+    "release_year": 2004,
+    "featured": false,
+    "cover": "/images/shaun-of-the-dead.png"
+  },
+  "resident_evil_o_hospede_maldito": {
+    "title": "Resident Evil: O Hóspede Maldito",
+    "overview": "Uma equipe militar enfrenta criaturas mutantes e mortos-vivos após um vírus escapar de um laboratório subterrâneo.",
+    "company": "Screen Gems",
+    "release_year": 2002,
+    "featured": false,
+    "cover": "/images/resident-evil.png"
+  },
+  "rec": {
+    "title": "REC",
+    "overview": "Uma repórter e seu cinegrafista ficam presos em um prédio infectado por uma misteriosa epidemia.",
+    "company": "Filmax",
+    "release_year": 2007,
+    "featured": false,
+    "cover": "/images/rec.png"
+  },
+  "a_noite_dos_mortos_vivos": {
+    "title": "A Noite dos Mortos-Vivos",
+    "overview": "Pessoas se refugiam em uma casa de fazenda enquanto mortos-vivos cercam o local.",
+    "company": "Continental Distributing",
+    "release_year": 1968,
+    "featured": false,
+    "cover": "/images/night-of-the-living-dead.png"
+  },
+  "army_of_the_dead_invasao_em_las_vegas": {
+    "title": "Army of the Dead: Invasão em Las Vegas",
+    "overview": "Um grupo de mercenários entra em uma Las Vegas infestada de zumbis para realizar um grande assalto.",
+    "company": "Netflix",
+    "release_year": 2021,
+    "featured": false,
+    "cover": "/images/army-of-the-dead.png"
+  }
+}
