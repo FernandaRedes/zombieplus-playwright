@@ -20,15 +20,18 @@ const { test, expect } = require('../support')
 test('Log in as an admin', async ({ page }) => {
     await page.login.visit()
     await page.login.submit('admin@zombieplus.com', 'pwd123')
-    await page.movies.isLoggedIn()
+    await page.login.isLoggedIn('Admin')
 })
 
 test('Not log in with wrong password', async ({ page }) => {
     await page.login.visit()
     await page.login.submit('admin@zombieplus.com', '123456')
 
-    const message = 'Oops!Ocorreu um erro ao tentar efetuar o login. Por favor, verifique suas credenciais e tente novamente.'
-    await page.toast.containText(message)
+    // const message = 'Oops!Ocorreu um erro ao tentar efetuar o login. Por favor, verifique suas credenciais e tente novamente.'
+    // await page.toast.containText(message)
+
+    const message = 'Ocorreu um erro ao tentar efetuar o login. Por favor, verifique suas credenciais e tente novamente.'
+    await page.popup.haveText(message)
 })
 
 test('Not log in if the email is invalid', async ({ page }) => {

@@ -1,0 +1,66 @@
+{
+  "create": {
+    "title": "Black Summer",
+    "overview": "Durante os primeiros e mais caóticos dias de um apocalipse zumbi, uma mãe faz de tudo para reencontrar sua filha desaparecida.",
+    "company": "Paramount Pictures",
+    "release_year": 2019,
+    "seasons": "2",
+    "featured": true,
+    "cover": "/covers/tvshows/twd.png"
+  },
+  "duplicate": {
+    "title": "Z Nation",
+    "overview": "Um grupo de sobreviventes precisa escoltar o único homem imune ao vírus zumbi através dos Estados Unidos para tentar encontrar uma cura.",
+    "company": "Sony Pictures",
+    "release_year": 2014,
+    "seasons": "5",
+    "featured": false,
+    "cover": "/covers/tvshows/twd.png"
+  },
+  "to_remove": {
+    "title": "Kingdom",
+    "overview": "Na Coreia medieval, um príncipe herdeiro investiga uma misteriosa praga que transforma pessoas em mortos-vivos famintos.",
+    "company": "Walt Disney Studios",
+    "release_year": 2019,
+    "seasons": "2",
+    "featured": false,
+    "cover": "/covers/tvshows/twd.png"
+  },
+  "search": {
+    "input": "Dead",
+    "outputs": [
+      "The Walking Dead",
+      "Fear the Walking Dead",
+      "All of Us Are Dead"
+    ],
+    "data": [
+      {
+        "title": "The Walking Dead",
+        "overview": "Após um apocalipse zumbi devastar o mundo, um grupo de sobreviventes liderado por Rick Grimes luta para encontrar abrigo, segurança e esperança em meio aos mortos-vivos e às ameaças humanas.",
+        "company": "Fox Entertainment",
+        "release_year": 2010,
+        "seasons": "11",
+        "featured": true,
+        "cover": "/covers/tvshows/twd.png"
+      },
+      {
+        "title": "Fear the Walking Dead",
+        "overview": "A série acompanha o início do surto zumbi e mostra como diferentes famílias enfrentam o colapso da sociedade nos primeiros dias da epidemia.",
+        "company": "Warner Bros. Pictures",
+        "release_year": 2015,
+        "seasons": "8",
+        "featured": false,
+        "cover": "/covers/tvshows/404.png"
+      },
+      {
+        "title": "All of Us Are Dead",
+        "overview": "Estudantes ficam presos em uma escola após um vírus transformar colegas e professores em zumbis, obrigando-os a lutar pela sobrevivência.",
+        "company": "Universal Pictures",
+        "release_year": 2022,
+        "seasons": "1",
+        "featured": false,
+        "cover": "/covers/tvshows/ftwd.png"
+      }
+    ]
+  }
+}

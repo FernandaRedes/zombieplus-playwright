@@ -1,7 +1,9 @@
 // // @ts-check
 // const { test, expect } = require('@playwright/test')
 const { test, expect } = require('../support')
-const { faker } = require('@faker-js/faker')
+// const { faker } = require('@faker-js/faker')
+
+// import { faker } from '@faker-js/faker'
 
 //Não precisa mais por causa do index que foi criado
 // const { LandingPage } = require('../pages/LandingPage')
@@ -10,8 +12,8 @@ const { faker } = require('@faker-js/faker')
 // // let = variável, aqui cria uma variável vazia
 // let landingPage
 // let toast
-// let leadName
-// let leadEmail
+let leadName
+let leadEmail
 
 // //Gancho que vai ser executado antes de cada teste que vai receber
 // test.beforeEach(async ({ page }) => {
@@ -23,6 +25,7 @@ const { faker } = require('@faker-js/faker')
 // Definindo a massa de testes, roda 1x para todos os testes
 // Como ele cria no primeiro teste, fica a mesma massa pro segundo
 test.beforeAll(async () => {
+  const { faker } = await import('@faker-js/faker')
   leadName = faker.person.fullName()
   leadEmail = faker.internet.email()
 })
@@ -34,13 +37,22 @@ test('You must register a lead in the waiting queue', async ({ page }) => {
   // await landingPage.openLeadModal()
   // await landingPage.submitLeadForm(leadName, leadEmail)
 
-  await page.landing.visit()
-  await page.landing.openLeadModal()
-  await page.landing.submitLeadForm(leadName, leadEmail)
+  // Trocando PageObject para Custom Action
+  // await page.landing.visit()
+  // await page.landing.openLeadModal()
+  // await page.landing.submitLeadForm(leadName, leadEmail)
 
-  const message = 'Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!'
+  await page.leads.visit()
+  await page.leads.openLeadModal()
+  await page.leads.submitLeadForm(leadName, leadEmail)
+
+  // const message = 'Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!'
   // await toast.containText(message)
-  await page.toast.containText(message)
+  //Toast foi alterado por um modal
+  // await page.toast.containText(message)
+
+  const message = 'Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato.'
+  await page.popup.haveText(message)
 });
 
 // Request faz requisições http na api da aplicação
@@ -57,12 +69,20 @@ test('You should not register if the email already exists', async ({ page, reque
   //Status code de sucesso
   expect(newLead.ok()).toBeTruthy()
   
-  await page.landing.visit()
-  await page.landing.openLeadModal()
-  await page.landing.submitLeadForm(leadName, leadEmail)
+   // Trocando PageObject para Custom Action
+  // await page.landing.visit()
+  // await page.landing.openLeadModal()
+  // await page.landing.submitLeadForm(leadName, leadEmail)
 
-  const message = 'O endereço de e-mail fornecido já está registrado em nossa fila de espera.'
-  await page.toast.containText(message)
+  await page.leads.visit()
+  await page.leads.openLeadModal()
+  await page.leads.submitLeadForm(leadName, leadEmail)
+
+  // const message = 'O endereço de e-mail fornecido já está registrado em nossa fila de espera.'
+  // await page.toast.containText(message)
+
+  const message = 'Verificamos que o endereço de e-mail fornecido já consta em nossa lista de espera. Isso significa que você está um passo mais perto de aproveitar nossos serviços.'
+  await page.popup.haveText(message)
 });
 
 test('Do not register with an incorrect email address', async ({ page }) => {
@@ -89,13 +109,22 @@ test('Do not register with an incorrect email address', async ({ page }) => {
   // await expect(page.locator('.alert')).toHaveText('Email incorreto')
   // await page.waitForTimeout(10000);
 
-  await page.landing.visit()
-  await page.landing.openLeadModal()
-  await page.landing.submitLeadForm('Fernanda Rocha', 'fernanda.tst.com')
+  //Trocando PageObject por Custom Action
+  // await page.landing.visit()
+  // await page.landing.openLeadModal()
+  // await page.landing.submitLeadForm('Fernanda Rocha', 'fernanda.tst.com')
+
+  await page.leads.visit()
+  await page.leads.openLeadModal()
+  await page.leads.submitLeadForm('Fernanda Rocha', 'fernanda.tst.com')
   // Colocar o target na classe LandingPage
   // await expect(page.locator('.alert')).toHaveText('Email incorreto')
 
-  await page.landing.alertHaveText('Email incorreto')
+  //Trocando PageObject por Custom Action
+  // await page.landing.alertHaveText('Email incorreto')
+
+  await page.leads.alertHaveText('Email incorreto')
+
 });
 
 test('Do not register if the name is blank', async ({ page }) => {
@@ -116,12 +145,22 @@ test('Do not register if the name is blank', async ({ page }) => {
 
   // await expect(page.locator('.alert')).toHaveText('Campo obrigatório')
 
-  await page.landing.visit()
-  await page.landing.openLeadModal()
-  await page.landing.submitLeadForm('', 'fernanda@tst.com')
+  //Trocando PageObject por Custom Action
+  // await page.landing.visit()
+  // await page.landing.openLeadModal()
+  // await page.landing.submitLeadForm('', 'fernanda@tst.com')
+
+  await page.leads.visit()
+  await page.leads.openLeadModal()
+  await page.leads.submitLeadForm('', 'fernanda@tst.com')
 
   // await expect(page.locator('.alert')).toHaveText('Campo obrigatório')
-  await page.landing.alertHaveText('Campo obrigatório')
+  
+  //Trocando PageObject por Custom Action
+  // await page.landing.alertHaveText('Campo obrigatório')
+
+   await page.leads.alertHaveText('Campo obrigatório')
+
 });
 
 test('Do not register if the email is blank', async ({ page }) => {
@@ -142,12 +181,21 @@ test('Do not register if the email is blank', async ({ page }) => {
 
   // await expect(page.locator('.alert')).toHaveText('Campo obrigatório')
 
-  await page.landing.visit()
-  await page.landing.openLeadModal()
-  await page.landing.submitLeadForm('Fernanda Rocha', '')
+  //Trocando PageObject por Custom Action
+  // await page.landing.visit()
+  // await page.landing.openLeadModal()
+  // await page.landing.submitLeadForm('Fernanda Rocha', '')
+
+  await page.leads.visit()
+  await page.leads.openLeadModal()
+  await page.leads.submitLeadForm('Fernanda Rocha', '')
 
   // await expect(page.locator('.alert')).toHaveText('Campo obrigatório')
-  await page.landing.alertHaveText('Campo obrigatório')
+  
+  //Trocando PageObject por Custom Action
+  // await page.landing.alertHaveText('Campo obrigatório')
+
+  await page.leads.alertHaveText('Campo obrigatório')
 });
 
 test('Do not register if all fields are blank', async ({ page }) => {
@@ -170,15 +218,24 @@ test('Do not register if all fields are blank', async ({ page }) => {
   //   'Campo obrigatório'
   // ])
 
-  await page.landing.visit()
-  await page.landing.openLeadModal()
-  await page.landing.submitLeadForm('', '')
+  //Trocando PageObject por Custom Action
+  // await page.landing.visit()
+  // await page.landing.openLeadModal()
+  // await page.landing.submitLeadForm('', '')
+
+  await page.leads.visit()
+  await page.leads.openLeadModal()
+  await page.leads.submitLeadForm('', '')
 
   // await expect(page.locator('.alert')).toHaveText([
   //   'Campo obrigatório',
   //   'Campo obrigatório'
   // ])
-  await page.landing.alertHaveText([
+
+  // Trocando PageObject por Custom Action
+  // await page.landing.alertHaveText([
+
+  await page.leads.alertHaveText([
     'Campo obrigatório',
     'Campo obrigatório'
   ])
