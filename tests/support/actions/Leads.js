@@ -15,7 +15,9 @@ export class Leads {
     // ------ AÇÕES DA LANDING PAGE ----------
 
     async visit() {
-        await this.page.goto('http://localhost:3000')
+        //No arquivo playwright.config tem o baseURL que fica armazenado o caminho do projeto junto do screenshot e video
+        //Então consegue passar apenas / que o playwright vai entender
+        await this.page.goto('/')
     }
 
     async openLeadModal() {

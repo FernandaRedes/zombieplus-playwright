@@ -1,11 +1,15 @@
+//Carrega o arquivo dotenv automaticamente na memória no momento em que o projeto do
+//Playwright estiver em execução 
+require('dotenv').config()
+
 const {Pool} = require('pg')
 
 const DbConfig = {
-    user: 'postgres',
-    host: 'localhost',
-    database: 'zombieplus',
-    password: 'pwd123',
-    port: 5432
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: Number(process.env.DB_PORT) // Força a conversão para número
 }
 
 export async function executeSQL(sqlScript) {
@@ -14,7 +18,7 @@ export async function executeSQL(sqlScript) {
         const client = await pool.connect()
 
         const result = await client.query(sqlScript)
-        console.log(result.rows)
+        // console.log(result.rows)
     } catch(error) {
         console.log('Error executing SQL ' + error)
     }

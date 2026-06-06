@@ -28,7 +28,7 @@ test.beforeAll(async () => {
 // })
 
 //test('Must register a new film', async ({ page, play }) => {
-test('Must register a new film', async ({ page }) => {
+test('Must register a new movie', async ({ page }) => {
     //Foi criado para testar o contexto se ia dar certo no index, que já foi renomeado para page
     // await play.goto('https://google.com.br')
 
@@ -66,12 +66,14 @@ test('Must register a new film', async ({ page }) => {
     await page.popup.haveText(`O filme '${movie.title}' foi adicionado ao catálogo.`)
 })
 
-test('Must remove a film', async ({ page, request }) => {
-    const movie = data.to_remove
+test('Must remove a movie', async ({ page, request }) => {
+    const movie = data.to_remove 
+
     //Pré-cadastro do filme para exclusão
     await request.api.postMovie(movie)
 
     await page.login.do('admin@zombieplus.com', 'pwd123', 'Admin')
+    await page.waitForLoadState('networkidle')
     await page.movies.remove(movie.title)
     await page.popup.haveText('Filme removido com sucesso.')
 })

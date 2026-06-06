@@ -94,9 +94,14 @@ export class TvShows {
         await expect(this.page.locator('.alert')).toHaveText(target)
     }
 
-    async remove(title) {
-    await this.goForm()
-    await this.page.getByRole('row', {name: title}).getByRole('button').click()
-    await this.page.click('.confirm-removal')
+    // async remove(title) {
+    // await this.goForm()
+    // await this.page.getByRole('row', {name: title}).getByRole('button').click( {timeout: 5000} )
+    // await this.page.click('.confirm-removal')
+
+    async remove(targetText) {
+    const row = this.page.getByRole('row').filter({ hasText: targetText})
+    await row.locator('.remove-item').click()
+    await row.locator('.confirm-removal').click({timeout: 5000 })
     }
 }

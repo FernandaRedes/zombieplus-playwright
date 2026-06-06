@@ -15,7 +15,8 @@ export class Login {
 
     // Async é uma função
     async visit() {
-        await this.page.goto('http://localhost:3000/admin/login')
+        //Usando caminho relativo pq o baseURL já está configurado na config
+        await this.page.goto('/admin/login')
 
         const loginForm = this.page.locator('.login-form')
         await expect(loginForm).toBeVisible({ timeout: 10000 })

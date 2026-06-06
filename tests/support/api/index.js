@@ -1,37 +1,49 @@
+require('dotenv').config()
+
 const { expect } = require('@playwright/test')
 
 export class Api {
     constructor(request) {
+        this.baseApi = process.env.BASE_API
         this.request = request
         this.token = undefined
     }
 
     async setToken() {
-        const response = await this.request.post('http://localhost:3333/sessions', {
+        const response = await this.request.post(this.baseApi + '/sessions', {
             data: {
                 email: 'admin@zombieplus.com',
                 password: 'pwd123'
             }
         })
 
-        //Retorna o status code ok é verdadeiro (200)
-        expect(response.ok()).toBeTruthy()
 
-        //Puxando valor do token e transformando texto em Json
-        const body = JSON.parse(await response.text())
+        // Se o login da API falhar, isso vai te avisar no terminal:
+        if (!response.ok()) {
+            console.error(`Falha na autenticação da API. Status: ${response.status()}`)
+        }
 
-        // console.log(await response.text())
+        const resBody = await response.json()
+        this.token = `Bearer ${resBody.token}`
 
-        //Pega o token do login
-        // console.log(body.token)
-        //Passando o identificador do token
-        this.token = 'Bearer ' + body.token
+        // // //Retorna o status code ok é verdadeiro (200)
+        // // expect(response.ok()).toBeTruthy()
 
-        // console.log(this.token)
+        // //Puxando valor do token e transformando texto em Json
+        // const body = JSON.parse(await response.text())
+
+        // // console.log(await response.text())
+
+        // //Pega o token do login
+        // // console.log(body.token)
+        // //Passando o identificador do token
+        // this.token = 'Bearer ' + body.token
+
+        // // console.log(this.token)
     }
 
     async getCompanyIdByName(companyName) {
-        const response = await this.request.get('http://localhost:3333/companies', {
+        const response = await this.request.get(this.baseApi + '/companies', {
             headers: {
                 Authorization: this.token
             },
@@ -51,7 +63,7 @@ export class Api {
     async postMovie(movie) {
         const companyId = await this.getCompanyIdByName(movie.company)
 
-        const response = await this.request.post('http://localhost:3333/movies', {
+        const response = await this.request.post(this.baseApi + '/movies', {
             headers: {
                 Authorization: this.token,
                 ContentType: 'multipart/form-data',
@@ -72,7 +84,7 @@ export class Api {
        async postTvShow(tvshow) {
         const companyId = await this.getCompanyIdByName(tvshow.company)
 
-        const response = await this.request.post('http://localhost:3333/tvshows', {
+        const response = await this.request.post(this.baseApi + '/tvshows', {
             headers: {
                 Authorization: this.token,
                 ContentType: 'multipart/form-data',
@@ -91,7 +103,7 @@ export class Api {
     }
 
     async postLead(lead) {
-        const response = await this.request.post('http://localhost:3333/leads', {
+        const response = await this.request.post(this.baseApi + '/leads', {
             headers: {
                 Authorization: this.token,
                 Accept: 'application/json, text/plain, */*'

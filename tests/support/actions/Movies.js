@@ -34,8 +34,10 @@ export class Movies {
         await this.page.getByLabel('Titulo do filme').fill(movie.title)
         await this.page.getByLabel('Sinopse').fill(movie.overview)
 
-        await this.page.locator('#select_company_id .react-select__indicator')
-            .click()
+        // await this.page.locator('#select_company_id .react-select__indicator')
+        //     .click()
+
+        await this.page.locator('#select_company_id .react-select__dropdown-indicator').click()
 
         //Para conseguir pegar o elemento pq some ao tentar inspecionar a lista
         // const html = await this.page.content()
@@ -91,10 +93,26 @@ export class Movies {
         await expect(this.page.locator('.alert')).toHaveText(target)
     }
 
-    async remove(title) {
-    // Xpath > //td[text()="A Noite dos mortos-vivos"]/..//button
+    async remove(targetText) {
+    
     //Quero uma linha do html de uma tabela cujo nome é 
-    await this.page.getByRole('row', {name: title}).getByRole('button').click()
-    await this.page.click('.confirm-removal')
+        const row = this.page.getByRole('row').filter({ hasText: targetText})
+        await row.locator('.remove-item').click()
+        await row.locator('.confirm-removal').click()
+
+        // await this.page.click('.confirm-removal')
+
+        // Filtra a linha dinamicamente contendo apenas o texto do título do filme
+        // Isso ignora sinopses coladas e variações do motor de acessibilidade
+        // const row = this.page.getByRole('row').filter({ hasText: title })
+        
+        // // Clica no botão de lixeira dentro daquela linha específica
+        // await row.waitFor({ state: 'visible', timeout: 10000 })
+        // await row.locator('.remove-item').click()
+        
+        // await this.page.getByText('aqui', { exact: false}).click()
+
+        // // Confirma a exclusão no modal
+        // await this.page.click('.confirm-removal')
     }
 }
